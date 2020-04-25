@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project name="STRINGTABLE">
+        <Key ID="STR_STRINGTABLE_TITLE">
+                <Original>Asaayu's Stringtable Viewer</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_SUBTITLE_KEY">
+                <Original>Localization Key</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_SUBTITLE_OUTPUT">
+                <Original>Localized Text</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_SUBTITLE_NUMBER">
+                <Original>#</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_BUTTON_SEARCH">
+                <Original>Search (Enter)</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_BUTTON_COPY">
+                <Original>Copy Selected Key to Clipboard (Ctrl - C)</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_BUTTON_EXPORT">
+                <Original>Export Selected Key Localize Code to Clipboard (Ctrl - X)</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_COMBO_ORIGIN">
+                <Original>Stringtable Origin</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_COMBO_LANGUAGE">
+                <Original>Language</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_BIKI_TOOLTIP">
+                <Original>View Stringtable.xml BIKI Page</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_GITHUB_TOOLTIP">
+                <Original>Contribute to the project on GitHub</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_INFO_DIAG_LOG">
+                <Original>!!! Stringtable Viewer - It took %3 seconds to load %1 in %2 language !!!</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_PRELOAD_DIAG_LOG">
+                <Original>!!! Stringtable Viewer - It took %1 seconds to preload stringtable list !!!</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_INFO_LOADING">
+                <Original>Loading</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_INFO_PRELOADING">
+                <Original>Preloading Stringtables - Please Wait</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_TOOLTIP_EDIT_BOX">
+                <Original>String to search for in both keys and localized text. (Case Insensitive)</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_TOOLTIP_KEY">
+                <Original>Key used with the 'localize' command to return localized text.</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_TOOLTIP_OUTPUT">
+                <Original>Text returned when the key is localized.</Original>
+        </Key>
+</Project>
