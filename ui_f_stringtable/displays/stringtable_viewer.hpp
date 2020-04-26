@@ -2,7 +2,6 @@ class stringtable_viewer {
 	idd = 19995;
 	enableSimulation = 1;
 	onLoad = "['onload',_this] call stringtable_fnc_stringtable_viewer;";
-	onUnload = "['onunload',_this] call stringtable_fnc_stringtable_viewer;";
 	class controlsbackground {
 		class background_tiles: ctrlStaticBackgroundDisableTiles {};
 		class title: ctrlStaticTitle {
