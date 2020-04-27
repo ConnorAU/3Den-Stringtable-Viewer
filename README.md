@@ -11,7 +11,4 @@ Specific lines of text will not be avaliable but simple text such as,
 - Directions (e.g "North", "East", etc.)
 - Menu UI text (e.g "Open", "Close", etc.)
 
-#### NOTE:
-When opening the viewer for the first time after starting your game it will need to preload the strings into the uiNameSpace. This will take approx. 90 seconds, the game will display a loading screen while this happens. After preloading is complete the menu will open instantly every time, until you close the game.
-
 #### If you run into any issues let me know and I'll try to get them fixed ASAP.
