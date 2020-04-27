@@ -34,7 +34,7 @@
                 <Original>Contribute to the project on GitHub</Original>
         </Key>
         <Key ID="STR_STRINGTABLE_INFO_DIAG_LOG">
-                <Original>!!! Stringtable Viewer - It took %3 seconds to load %1 in %2 language !!!</Original>
+                <Original>!!! Stringtable Viewer - It took %3 seconds to load %4 %1 keys in %2 language !!!</Original>
         </Key>
         <Key ID="STR_STRINGTABLE_PRELOAD_DIAG_LOG">
                 <Original>!!! Stringtable Viewer - It took %1 seconds to preload stringtable list !!!</Original>
