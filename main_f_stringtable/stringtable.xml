@@ -72,4 +72,16 @@
         <Original>Text returned when the key is localized.</Original>
         <German>Text der zurückgegeben wird, wenn der Schlüssel übersetzt wurde.</German>
     </Key>
+    <Key ID="STR_STRINGTABLE_CUSTOM_XML_TITLE">
+         <Original>Custom stringtable.xml file paths (separated by ,)</Original>
+         <German>Benutzerdefinierte stringtable.xml Pfade (Durch ',' getrennt)</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_TITLE">
+         <Original>Unable to modify custom stringtable.xml paths</Original>
+         <German>Ändern der benutzerdefinierten stringtable.xml Pfade nicht möglich</German>
+     </Key>
+         <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_DESCRIPTION">
+         <Original>You are missing the following dependency: &lt;a href='%1' colorLink='%2'&gt;User Input Menus&lt;/a&gt;</Original>
+         <German>Folgende Abhängigkeiten fehlen: &lt;a href='%1' colorLink='%2'&gt;User Input Menus&lt;/a&gt;</German>
+     </Key>
 </Project>
