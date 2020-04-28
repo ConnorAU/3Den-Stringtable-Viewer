@@ -161,19 +161,25 @@ class stringtable_viewer {
 			text = "\stringtable\ui_f_stringtable\data\export_to_clipboard_ca.paa";
 			tooltip = $STR_STRINGTABLE_BUTTON_EXPORT;
 		};
+		class manageCustomFilepathsButton: SearchEditButton {
+			idc = 6500;
+			x = "((getResolution select 2) * 0.5 * pixelW) - 36 * (pixelW * pixelGrid * 0.50)";
+			text = "\a3\3den\Data\Displays\Display3DEN\PanelLeft\entitylist_layer_ca.paa";
+			tooltip = $STR_STRINGTABLE_BUTTON_CUSTOM_PATHS;
+		};
 		class comboStringtable: CtrlCombo {
 			idc = 7000;
-			x = "((getResolution select 2) * 0.5 * pixelW) - 36 * (pixelW * pixelGrid * 0.50)";
+			x = "((getResolution select 2) * 0.5 * pixelW) - 30 * (pixelW * pixelGrid * 0.50)";
 			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
-			w = "59 * (pixelW * pixelGrid * 0.50)";
+			w = "56 * (pixelW * pixelGrid * 0.50)";
 			h = "6 * (pixelH * pixelGrid * 	0.50)";
 			tooltip = $STR_STRINGTABLE_COMBO_ORIGIN;
 		};
 		class comboLanguage: CtrlCombo {
 			idc = 8000;
-			x = "((getResolution select 2) * 0.5 * pixelW) + 23 * (pixelW * pixelGrid * 0.50)";
+			x = "((getResolution select 2) * 0.5 * pixelW) + 26 * (pixelW * pixelGrid * 0.50)";
 			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
-			w = "59 * (pixelW * pixelGrid * 0.50)";
+			w = "56 * (pixelW * pixelGrid * 0.50)";
 			h = "6 * (pixelH * pixelGrid * 	0.50)";
 			tooltip = $STR_STRINGTABLE_COMBO_LANGUAGE;
 		};

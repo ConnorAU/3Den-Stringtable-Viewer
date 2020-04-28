@@ -15,6 +15,7 @@ params
 
 #define COPY_BUTTON (DISPLAY displayCtrl 5000)
 #define EXPORT_BUTTON (DISPLAY displayCtrl 6000)
+#define CUSTOM_XML_BUTTON (DISPLAY displayCtrl 6500)
 
 #define ORIGIN_COMBO (DISPLAY displayCtrl 7000)
 #define LANGUAGE_COMBO (DISPLAY displayCtrl 8000)
@@ -68,19 +69,27 @@ switch _mode do
 				"\a3\languagemissions_f_tacops\stringtable.xml",
 				"\a3\languagemissions_f_enoch\stringtable.xml",
 				"\languagecore_f\stringtable.xml"
-			]]
+			]],
+			["Custom Stringtables",profileNamespace getVariable ["stringtable_viewer_saved_xml_paths",[]]]
 		];
 
 		if (uiNamespace getVariable ["stringtable_viewer_allow_preload",true]) then
 		{
 			private _diag_ticktime = diag_ticktime;
 
-			startLoadingScreen [""];
-			private _master = ["parsestringtables",_stringtables] call STRINGTABLE_fnc_stringtable_viewer;
+			private _master = [];
+
+			private _totalFiles = 0;
+			{_totalFiles = _totalFiles + (count(_x#1))} count _stringtables;
+			private _parsedFiles = 0;
+			{
+				private _output = ["parsestringtables",[_x#1,_totalFiles,_parsedFiles]] call STRINGTABLE_fnc_stringtable_viewer;
+				_parsedFiles = _parsedFiles + count(_x#1);
+				_master pushBack [_x#0,_output];
+			} foreach _stringtables;
 
 			uiNamespace setVariable ["stringtable_viewer_allow_preload",false];
 			uiNamespace setVariable ["stringtable_viewer_data",_master];
-			endLoadingScreen;
 
 			private _time = diag_ticktime - _diag_ticktime;
 			diag_log format[localize "STR_STRINGTABLE_PRELOAD_DIAG_LOG",str _time];
@@ -97,19 +106,18 @@ switch _mode do
 		SEARCH_EDIT ctrlCommit 0;
 	};
 	case "parsestringtables":{
-		_params params ["_stringtables"];
+		_params params ["_filepaths","_totalFiles","_parsedFiles"];
 
 		private _languages = ("true" configClasses (configfile >> "CfgLanguages")) apply {tolower configname _x};
-		private _output = [];
-		{
-			private _strings = [];
-			{
-				_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
-			} forEach (_x#1);
-			_output pushback [_x#0,_strings];
-		} forEach _params;
+		private _strings = [];
 
-		_output
+		{
+			_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
+			_parsedFiles = _parsedFiles + 1;
+			BUSY_BACKGROUND_PRELOADING ctrlSetText format["%1 (%2%3)",localize "STR_STRINGTABLE_INFO_PRELOADING",ceil((_parsedFiles/_totalFiles)*100),"%"];
+		} forEach _filepaths;
+
+		_strings
 	};
 	case "extractstringsfromtable":{
 		private _stringStartsWith = {
@@ -118,11 +126,12 @@ switch _mode do
 		};
 
 		_params params ["_filePath","_languages"];
+		private _languagesCount = count _languages;
 		private _stringtable = ((loadFile _filePath) splitString "<>") select {count(toarray _x - [9,10,13,32]) > 0};
 		private _strings = [];
 		private _activeKey = "";
 		private _activeStrings = [];
-		_activeStrings resize count _languages;
+		_activeStrings resize _languagesCount;
 		private _x = "";
 
 		for "_i" from 0 to (count _stringtable - 1) do {
@@ -138,6 +147,7 @@ switch _mode do
 					_strings pushback [_activeKey,_activeStrings apply {if (isNil {_x}) then {""} else {_x}}];
 					_activeKey = "";
 					_activeStrings = [];
+					_activeStrings resize _languagesCount;
 				} else {
 					if (tolower _x in _languages) then {
 						private _x1 = _stringtable # (_i + 1);
@@ -165,10 +175,6 @@ switch _mode do
 		_params params [["_display",displayNull,[displayNull]]];
 		uiNamespace setVariable ["asaayu_stringtable_display",_display];
 
-		missionNamespace setVariable ["stringtable_viewer_origin","a3"];
-		missionNamespace setVariable ["stringtable_viewer_origin_index",0];
-		missionNamespace setVariable ["stringtable_viewer_language",language];
-
 		private _languages = ("true" configClasses (configfile >> "CfgLanguages")) apply {configname _x};
 		missionNamespace setVariable ["stringtable_viewer_language_index",_languages find language];
 
@@ -187,11 +193,15 @@ switch _mode do
 				LANGUAGE_COMBO lbSetCurSel _index;
 			};
 		} foreach _languages;
+		missionNamespace setVariable ["stringtable_viewer_language",language];
+
 		{
 			private _index = ORIGIN_COMBO lbAdd _x;
 			ORIGIN_COMBO lbSetData [_index, _x];
 		} foreach _params;
 		ORIGIN_COMBO lbSetCurSel 0;
+		missionNamespace setVariable ["stringtable_viewer_origin",ORIGIN_COMBO lbData 0];
+		missionNamespace setVariable ["stringtable_viewer_origin_index",0];
 
 		SEARCH_EDIT ctrlSetText "";
 
@@ -205,6 +215,7 @@ switch _mode do
 		SEARCH_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["search",[tolower ctrlText SEARCH_EDIT]] spawn STRINGTABLE_fnc_stringtable_viewer }];
 		COPY_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["keydown",[nil,DIK_C,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
 		EXPORT_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["keydown",[nil,DIK_X,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
+		CUSTOM_XML_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["modifycustomxmlpaths",[]] call STRINGTABLE_fnc_stringtable_viewer }];
 	};
 	case "keydown":
 	{
@@ -267,6 +278,59 @@ switch _mode do
 			["search",[tolower ctrlText SEARCH_EDIT]] spawn STRINGTABLE_fnc_stringtable_viewer;
 		};
 	};
+	case "modifycustomxmlpaths":{
+		private _paths = profileNamespace getVariable ["stringtable_viewer_saved_xml_paths",[]];
+		[
+			true,_paths joinString ",",
+			"Custom stringtable.xml file paths (separated by ,)",
+			{
+				if _confirmed then {
+					[_text] spawn {
+						params ["_text"];
+
+						BUSY_BACKGROUND_PRELOADING ctrlShow true;
+						ctrlSetFocus BUSY_BACKGROUND_PRELOADING;
+						BUSY_BACKGROUND_PRELOADING ctrlCommit 0;
+
+						_text = _text splitString ",";
+						profileNamespace setVariable ["stringtable_viewer_saved_xml_paths",_text];
+						saveProfileNamespace;
+
+						private _master = uiNamespace getVariable ["stringtable_viewer_data",[]];
+						private _output = ["parsestringtables",[_text,count _text,0]] call STRINGTABLE_fnc_stringtable_viewer;
+						(_master#1) set [1,_output];
+						uiNamespace setVariable ["stringtable_viewer_data",_master];
+
+						BUSY_BACKGROUND_PRELOADING ctrlShow false;
+						BUSY_BACKGROUND_PRELOADING ctrlCommit 0;
+
+						if (stringtable_viewer_origin_index == 1) then {
+							["search",[tolower ctrlText SEARCH_EDIT]] call STRINGTABLE_fnc_stringtable_viewer;
+						};
+					};
+				};
+			},
+			localize "str_3den_display3den_menubar_missionsave_text","",DISPLAY
+		] call (missionNamespace getVariable ["CAU_UserInputMenus_fnc_text",{
+			// Inform the user they are missing the mod required to enter custom stringtable.xml paths
+			private _color = [
+				"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])",
+				"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])",
+				"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])"
+			] apply {_x call BIS_fnc_parseNumber};
+			[
+				format[
+					"You are missing the following dependency: <a href='%1' colorLink='%2'>User Input Menus</a>",
+					"https://steamcommunity.com/sharedfiles/filedetails/?id=1673595418",
+					_color call BIS_fnc_colorRGBtoHTML
+				],
+				"Unable to modify custom stringtable paths",
+				false,localize "str_disp_ok","",
+				DISPLAY
+			] call BIS_fnc_3DENShowMessage;
+		}]);
+	};
+
 	case "loadstringtable":
 	{
 		_params params [["_search_term",""]];

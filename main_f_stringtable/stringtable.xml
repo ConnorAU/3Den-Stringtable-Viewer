@@ -21,6 +21,9 @@
         <Key ID="STR_STRINGTABLE_BUTTON_EXPORT">
                 <Original>Export Selected Key Localize Code to Clipboard (Ctrl - X)</Original>
         </Key>
+        <Key ID="STR_STRINGTABLE_BUTTON_CUSTOM_PATHS">
+                <Original>Add and remove your own stringtable.xml file paths for viewing</Original>
+        </Key>
         <Key ID="STR_STRINGTABLE_COMBO_ORIGIN">
                 <Original>Stringtable Origin</Original>
         </Key>
