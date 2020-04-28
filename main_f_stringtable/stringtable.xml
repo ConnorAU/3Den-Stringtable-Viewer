@@ -72,8 +72,4 @@
         <Original>Text returned when the key is localized.</Original>
         <German>Text der zurückgegeben wird, wenn der Schlüssel übersetzt wurde.</German>
     </Key>
-    <Key ID="STR_STRINGTABLE_NODATA">
-        <Original>Error: View data &lt; 0.</Original>
-        <German>Fehler: Anzuzeigende Daten &lt; 0.</German>
-    </Key>
 </Project>
