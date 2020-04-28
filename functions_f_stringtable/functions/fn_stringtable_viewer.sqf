@@ -105,7 +105,8 @@ switch _mode do
 		SEARCH_EDIT ctrlSetTooltip "";
 		SEARCH_EDIT ctrlCommit 0;
 	};
-	case "parsestringtables":{
+	case "parsestringtables":
+	{
 		_params params ["_filepaths","_totalFiles","_parsedFiles"];
 
 		private _languages = ("true" configClasses (configfile >> "CfgLanguages")) apply {tolower configname _x};
@@ -119,7 +120,8 @@ switch _mode do
 
 		_strings
 	};
-	case "extractstringsfromtable":{
+	case "extractstringsfromtable":
+	{
 		private _stringStartsWith = {
 			params ["_string","_search"];
 			tolower _string find tolower _search == 0;
@@ -278,11 +280,12 @@ switch _mode do
 			["search",[tolower ctrlText SEARCH_EDIT]] spawn STRINGTABLE_fnc_stringtable_viewer;
 		};
 	};
-	case "modifycustomxmlpaths":{
+	case "modifycustomxmlpaths":
+	{
 		private _paths = profileNamespace getVariable ["stringtable_viewer_saved_xml_paths",[]];
 		[
 			true,_paths joinString ",",
-			"Custom stringtable.xml file paths (separated by ,)",
+			localize "STR_STRINGTABLE_CUSTOM_XML_TITLE",
 			{
 				if _confirmed then {
 					[_text] spawn {
@@ -320,11 +323,11 @@ switch _mode do
 			] apply {_x call BIS_fnc_parseNumber};
 			[
 				format[
-					"You are missing the following dependency: <a href='%1' colorLink='%2'>User Input Menus</a>",
+					localize "STR_STRINGTABLE_CUSTOM_ERROR_DESCRIPTION",
 					"https://steamcommunity.com/sharedfiles/filedetails/?id=1673595418",
 					_color call BIS_fnc_colorRGBtoHTML
 				],
-				"Unable to modify custom stringtable paths",
+				localize "STR_STRINGTABLE_CUSTOM_ERROR_TITLE",
 				false,localize "str_disp_ok","",
 				DISPLAY
 			] call BIS_fnc_3DENShowMessage;
@@ -340,7 +343,7 @@ switch _mode do
 		private _diag_ticktime = diag_ticktime;
 
 		private _keys = uiNamespace getVariable ["stringtable_viewer_data",[]];
-		if (count _keys < 0) exitWith { systemchat "Error: View data < 0"; };
+		if (count _keys < 0) exitWith {};
 		{
 			_x params ["_key","_text_list"];
 			private _text = _text_list#stringtable_viewer_language_index;

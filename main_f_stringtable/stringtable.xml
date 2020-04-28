@@ -57,4 +57,13 @@
         <Key ID="STR_STRINGTABLE_TOOLTIP_OUTPUT">
                 <Original>Text returned when the key is localized.</Original>
         </Key>
+        <Key ID="STR_STRINGTABLE_CUSTOM_XML_TITLE">
+                <Original>Custom stringtable.xml file paths (separated by ,)</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_TITLE">
+                <Original>Unable to modify custom stringtable paths</Original>
+        </Key>
+        <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_DESCRIPTION">
+                <Original>You are missing the following dependency: &lt;a href='%1' colorLink='%2'&gt;User Input Menus&lt;/a&gt;</Original>
+        </Key>
 </Project>
