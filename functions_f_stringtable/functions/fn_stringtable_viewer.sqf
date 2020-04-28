@@ -75,12 +75,9 @@ switch _mode do
 		{
 			private _diag_ticktime = diag_ticktime;
 
-			startLoadingScreen [""];
 			private _master = ["parsestringtables",_stringtables] call STRINGTABLE_fnc_stringtable_viewer;
-
 			uiNamespace setVariable ["stringtable_viewer_allow_preload",false];
 			uiNamespace setVariable ["stringtable_viewer_data",_master];
-			endLoadingScreen;
 
 			private _time = diag_ticktime - _diag_ticktime;
 			diag_log format[localize "STR_STRINGTABLE_PRELOAD_DIAG_LOG",str _time];
@@ -101,10 +98,16 @@ switch _mode do
 
 		private _languages = ("true" configClasses (configfile >> "CfgLanguages")) apply {tolower configname _x};
 		private _output = [];
+		private _totalFiles = 0;
+		{_totalFiles = _totalFiles + (count(_x#1))} count _params;
+		private _parsedFiles = 0;
+		
 		{
 			private _strings = [];
 			{
 				_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
+				_parsedFiles = _parsedFiles + 1;
+				BUSY_BACKGROUND_PRELOADING ctrlSetText format["%1 (%2%3)",localize "STR_STRINGTABLE_INFO_PRELOADING",ceil((_parsedFiles/_totalFiles)*100),"%"];
 			} forEach (_x#1);
 			_output pushback [_x#0,_strings];
 		} forEach _params;
