@@ -89,8 +89,9 @@ class stringtable_viewer {
 			colorShadow[] = {0,0,0,0.5}; // Text shadow color (used only when shadow is 1)
 
 			tooltip = ""; // Tooltip text
-			columns[] = {0,0.5,1}; // Horizontal coordinates of columns (relative to list width, in range from 0 to 1)
-
+			columns[] = {0,0.5,0.85}; // Horizontal coordinates of columns (relative to list width, in range from 0 to 1)
+			disableOverflow = true;
+			
 			drawSideArrows = 0; // 1 to draw buttons linked by idcLeft and idcRight on both sides of selected line. They are resized to line height
 			idcLeft = -1; // Left button IDC
 			idcRight = -1; // Right button IDC
