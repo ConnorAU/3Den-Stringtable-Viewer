@@ -82,16 +82,16 @@ class stringtable_viewer {
 
 			colorSelectBackground[] = {1,1,1,0.3}; // Selected item fill color
 			colorSelectBackground2[] = {1,1,1,0.3}; // Selected item fill color (oscillates between this and colorSelectBackground)
-			colorText[] = {1,1,1,1}; // Text and frame 
-			colorcolorDisabled[] = {1,1,1,0.5}; // Disabled text 
-			colorcolorSelect[] = {1,1,1,1}; // Text selection 
+			colorText[] = {1,1,1,1}; // Text and frame
+			colorcolorDisabled[] = {1,1,1,0.5}; // Disabled text
+			colorcolorSelect[] = {1,1,1,1}; // Text selection
 			colorcolorSelect2[] = {1,1,1,1}; // Text selection color (oscillates between this and colorSelect)
 			colorShadow[] = {0,0,0,0.5}; // Text shadow color (used only when shadow is 1)
 
 			tooltip = ""; // Tooltip text
-			columns[] = {0,0.5,0.85}; // Horizontal coordinates of columns (relative to list width, in range from 0 to 1)
+			columns[] = {0,0.5,0.97}; // Horizontal coordinates of columns (relative to list width, in range from 0 to 1)
 			disableOverflow = true;
-			
+
 			drawSideArrows = 0; // 1 to draw buttons linked by idcLeft and idcRight on both sides of selected line. They are resized to line height
 			idcLeft = -1; // Left button IDC
 			idcRight = -1; // Right button IDC
@@ -190,7 +190,7 @@ class stringtable_viewer {
 			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
 			w = "15.2 * (pixelW * pixelGrid * 0.50)";
 			h = "6 * (pixelH * pixelGrid * 0.50)";
-			text = "<a href='https://github.com/Asaayu'>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</a>";
+			text = "<a href='https://github.com/Asaayu/3Den-Stringtable-Viewer'>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</a>";
 			fade = 1;
 			class Attributes {
 				align = "left";

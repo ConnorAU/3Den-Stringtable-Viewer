@@ -76,8 +76,8 @@ switch _mode do
 			private _diag_ticktime = diag_ticktime;
 
 			startLoadingScreen [""];
-			private _master = ["parseStringTables",_stringtables] call STRINGTABLE_fnc_stringtable_viewer;
-			
+			private _master = ["parsestringtables",_stringtables] call STRINGTABLE_fnc_stringtable_viewer;
+
 			uiNamespace setVariable ["stringtable_viewer_allow_preload",false];
 			uiNamespace setVariable ["stringtable_viewer_data",_master];
 			endLoadingScreen;
@@ -96,7 +96,7 @@ switch _mode do
 		SEARCH_EDIT ctrlSetTooltip "";
 		SEARCH_EDIT ctrlCommit 0;
 	};
-	case "parseStringTables":{
+	case "parsestringtables":{
 		_params params ["_stringtables"];
 
 		private _languages = ("true" configClasses (configfile >> "CfgLanguages")) apply {tolower configname _x};
@@ -104,14 +104,14 @@ switch _mode do
 		{
 			private _strings = [];
 			{
-				_strings append (["extractStringsFromTable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
+				_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
 			} forEach (_x#1);
 			_output pushback [_x#0,_strings];
 		} forEach _params;
-		
+
 		_output
 	};
-	case "extractStringsFromTable":{
+	case "extractstringsfromtable":{
 		private _stringStartsWith = {
 			params ["_string","_search"];
 			tolower _string find tolower _search == 0;
@@ -203,8 +203,8 @@ switch _mode do
 		ORIGIN_COMBO ctrlAddEventHandler ["LBSelChanged",{ ["lbselchanged",[0,_this#1]] call STRINGTABLE_fnc_stringtable_viewer }];
 		LANGUAGE_COMBO ctrlAddEventHandler ["LBSelChanged",{ ["lbselchanged",[1,_this#1]] call STRINGTABLE_fnc_stringtable_viewer }];
 		SEARCH_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["search",[tolower ctrlText SEARCH_EDIT]] spawn STRINGTABLE_fnc_stringtable_viewer }];
-		COPY_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["KeyDown",[nil,DIK_C,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
-		EXPORT_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["KeyDown",[nil,DIK_X,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
+		COPY_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["keydown",[nil,DIK_C,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
+		EXPORT_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["keydown",[nil,DIK_X,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
 	};
 	case "keydown":
 	{
@@ -275,7 +275,7 @@ switch _mode do
 			_x params ["_key","_text_list"];
 			private _text = _text_list#stringtable_viewer_language_index;
 			if (_search_term isEqualTo "" || {_search_term in toLower _key || _search_term in toLower _text}) then {
-				private _row = LIST lnbAddRow [_key, _text, str 1];
+				private _row = LIST lnbAddRow [_key, _text, ""];
 				LIST lnbSetTooltip [[_row,0], _text];
 			};
 		} foreach ((_keys#stringtable_viewer_origin_index)#1);
