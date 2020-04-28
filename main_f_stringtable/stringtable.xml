@@ -1,69 +1,79 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project name="STRINGTABLE">
-        <Key ID="STR_STRINGTABLE_TITLE">
-                <Original>Asaayu's Stringtable Viewer</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_SUBTITLE_KEY">
-                <Original>Localization Key</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_SUBTITLE_OUTPUT">
-                <Original>Localized Text</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_SUBTITLE_NUMBER">
-                <Original>#</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_BUTTON_SEARCH">
-                <Original>Search (Enter)</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_BUTTON_COPY">
-                <Original>Copy Selected Key to Clipboard (Ctrl - C)</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_BUTTON_EXPORT">
-                <Original>Export Selected Key Localize Code to Clipboard (Ctrl - X)</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_BUTTON_CUSTOM_PATHS">
-                <Original>Add and remove your own stringtable.xml file paths for viewing</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_COMBO_ORIGIN">
-                <Original>Stringtable Origin</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_COMBO_LANGUAGE">
-                <Original>Language</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_BIKI_TOOLTIP">
-                <Original>View Stringtable.xml BIKI Page</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_GITHUB_TOOLTIP">
-                <Original>Contribute to the project on GitHub</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_INFO_DIAG_LOG">
-                <Original>!!! Stringtable Viewer - It took %3 seconds to load %4 %1 keys in %2 language !!!</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_PRELOAD_DIAG_LOG">
-                <Original>!!! Stringtable Viewer - It took %1 seconds to preload stringtable list !!!</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_INFO_LOADING">
-                <Original>Loading</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_INFO_PRELOADING">
-                <Original>Preloading Stringtables - Please Wait</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_TOOLTIP_EDIT_BOX">
-                <Original>String to search for in both keys and localized text. (Case Insensitive)</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_TOOLTIP_KEY">
-                <Original>Key used with the 'localize' command to return localized text.</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_TOOLTIP_OUTPUT">
-                <Original>Text returned when the key is localized.</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_CUSTOM_XML_TITLE">
-                <Original>Custom stringtable.xml file paths (separated by ,)</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_TITLE">
-                <Original>Unable to modify custom stringtable paths</Original>
-        </Key>
-        <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_DESCRIPTION">
-                <Original>You are missing the following dependency: &lt;a href='%1' colorLink='%2'&gt;User Input Menus&lt;/a&gt;</Original>
-        </Key>
+    <Key ID="STR_STRINGTABLE_TITLE">
+        <Original>Asaayu's Stringtable Viewer</Original>
+        <German>Asaayu's Stringtable Viewer</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_SUBTITLE_KEY">
+        <Original>Localization Key</Original>
+        <German>Übersetzungsschlüssel</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_SUBTITLE_OUTPUT">
+        <Original>Localized Text</Original>
+        <German>Übersetzung</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_SUBTITLE_NUMBER">
+        <Original>#</Original>
+        <German>#</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_BUTTON_SEARCH">
+        <Original>Search (Enter)</Original>
+        <German>Suchen (Eingabe)</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_BUTTON_COPY">
+        <Original>Copy Selected Key to Clipboard (Ctrl - C)</Original>
+        <German>Ausgewählen Schlüssel in die Zwischenablage kopieren (STRG - C)</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_BUTTON_EXPORT">
+        <Original>Export Selected Key Localize Code to Clipboard (Ctrl - X)</Original>
+        <German>Ausgewählten Schlüssel als Übersetzungscode in die Zwischenablage kopieren (STRG - X)</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_COMBO_ORIGIN">
+        <Original>Stringtable Origin</Original>
+        <German>Stringtable-Ursprung</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_COMBO_LANGUAGE">
+        <Original>Language</Original>
+        <German>Sprache</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_BIKI_TOOLTIP">
+        <Original>View Stringtable.xml BIKI Page</Original>
+        <German>Stringtable.xml BIKI Internetseite anzeigen</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_GITHUB_TOOLTIP">
+        <Original>Contribute to the project on GitHub</Original>
+        <German>Über GitHub am Projekt mitwirken</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_INFO_DIAG_LOG">
+        <Original>!!! Stringtable Viewer - It took %3 seconds to load %4 %1 keys in %2 language !!!</Original>
+        <German>!!! Stringtable Viewer - Es hat %3 Sekunden gedauert, um %4 %1 Schlüssel in %2 Sprachen zu laden !!!</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_PRELOAD_DIAG_LOG">
+        <Original>!!! Stringtable Viewer - It took %1 seconds to preload stringtable list !!!</Original>
+        <German>!!! Stringtable Viewer - Das Vorladen der Stringtableliste hat %1 Sekunden gedauert. !!!</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_INFO_LOADING">
+        <Original>Loading</Original>
+        <German>Laden</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_INFO_PRELOADING">
+        <Original>Preloading Stringtables - Please Wait</Original>
+        <German>Stringtables werden geladen - Bitte warten</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_TOOLTIP_EDIT_BOX">
+        <Original>String to search for in both keys and localized text. (Case Insensitive)</Original>
+        <German>Zeichenkette nachder Schlüssel  und die Übersetzungen durchsucht werden. (Groß- und Kleinschreibung wird nicht berücksichtigt)</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_TOOLTIP_KEY">
+        <Original>Key used with the 'localize' command to return localized text.</Original>
+        <German>Schlüssel der mit dem 'localize' Befehl verwendet wird.</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_TOOLTIP_OUTPUT">
+        <Original>Text returned when the key is localized.</Original>
+        <German>Text der zurückgegeben wird, wenn der Schlüssel übersetzt wurde.</German>
+    </Key>
+    <Key ID="STR_STRINGTABLE_NODATA">
+        <Original>Error: View data &lt; 0.</Original>
+        <German>Fehler: Anzuzeigende Daten &lt; 0.</German>
+    </Key>
 </Project>
