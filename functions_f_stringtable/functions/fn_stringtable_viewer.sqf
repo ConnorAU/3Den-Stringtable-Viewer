@@ -233,6 +233,10 @@ switch _mode do
 				copyToClipboard format['localize "%1"',_key];
 				true
 			};
+			case (_ctrl && {_keydown_key == DIK_F && {_key != ""}}):
+			{
+				ctrlSetFocus SEARCH_EDIT;
+			};
 			default {false};
 		};
 	};
