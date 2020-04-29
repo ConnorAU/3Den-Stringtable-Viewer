@@ -39,6 +39,7 @@ switch _mode do
 				"\a3\language_f\stringtable.xml",
 				"\a3\language_f_orange\stringtable.xml",
 				"\a3\language_f_oldman\stringtable.xml",
+				"\a3\languagemissions_f_oldman\stringtable.xml",
 				"\a3\languagemissions_f_mark\stringtable.xml",
 				"\a3\languagemissions_f_jets\stringtable.xml",
 				"\a3\language_f_exp\stringtable.xml",
