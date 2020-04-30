@@ -91,8 +91,8 @@
         <German>Text der zurückgegeben wird, wenn der Schlüssel übersetzt wurde.</German>
     </Key>
     <Key ID="STR_STRINGTABLE_CUSTOM_XML_TITLE">
-         <Original>Custom stringtable.xml file paths (separated by ,)</Original>
-         <English>Custom stringtable.xml file paths (separated by ,)</English>
+         <Original>Custom stringtable.xml file paths (separated by ',')</Original>
+         <English>Custom stringtable.xml file paths (separated by ',')</English>
          <German>Benutzerdefinierte stringtable.xml Pfade (Durch ',' getrennt)</German>
     </Key>
     <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_TITLE">
