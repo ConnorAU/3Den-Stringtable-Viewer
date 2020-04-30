@@ -25,6 +25,11 @@
         <English>Search (Enter)</English>
         <German>Suchen (Eingabe)</German>
     </Key>
+    <Key ID="STR_STRINGTABLE_EDIT_SEARCH">
+        <Original>Type to search...</Original>
+        <English>Type to search...</English>
+        <German>Zur Suche Text hier eingeben...</German>
+    </Key>
     <Key ID="STR_STRINGTABLE_BUTTON_COPY">
         <Original>Copy Selected Key to Clipboard (Ctrl - C)</Original>
         <English>Copy Selected Key to Clipboard (Ctrl - C)</English>
