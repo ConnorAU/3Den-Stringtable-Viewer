@@ -206,7 +206,7 @@ switch _mode do
 		missionNamespace setVariable ["stringtable_viewer_origin",ORIGIN_COMBO lbData 0];
 		missionNamespace setVariable ["stringtable_viewer_origin_index",0];
 
-		SEARCH_EDIT ctrlSetText "";
+		SEARCH_EDIT ctrlSetText localize "STR_STRINGTABLE_EDIT_SEARCH";
 
 		{ _x ctrlCommit 0 } count [LIST, SEARCH_EDIT, SEARCH_BUTTON, COPY_BUTTON, EXPORT_BUTTON, ORIGIN_COMBO, LANGUAGE_COMBO];
 	};
@@ -219,6 +219,8 @@ switch _mode do
 		COPY_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["keydown",[nil,DIK_C,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
 		EXPORT_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["keydown",[nil,DIK_X,false,true]] call STRINGTABLE_fnc_stringtable_viewer }];
 		CUSTOM_XML_BUTTON ctrlAddEventHandler ["ButtonClick",{ ["modifycustomxmlpaths",[]] call STRINGTABLE_fnc_stringtable_viewer }];
+		SEARCH_EDIT ctrlAddEventHandler ["SetFocus",{ ["focusSearch",[]] call STRINGTABLE_fnc_stringtable_viewer }];
+		SEARCH_EDIT ctrlAddEventHandler ["KillFocus",{ ["killFocusSearch",[]] call STRINGTABLE_fnc_stringtable_viewer }];
 	};
 	case "keydown":
 	{
@@ -367,5 +369,19 @@ switch _mode do
 
 		BUSY_BACKGROUND ctrlShow false;
 		BUSY_BACKGROUND ctrlCommit 0;
+	};
+	case "focusSearch":
+	{
+		if (ctrlText SEARCH_EDIT == localize "STR_STRINGTABLE_EDIT_SEARCH") then
+		{
+			SEARCH_EDIT ctrlSetText "";
+		};
+	};
+	case "killFocusSearch":
+	{
+		if (ctrlText SEARCH_EDIT == "") then
+		{
+			SEARCH_EDIT ctrlSetText localize "STR_STRINGTABLE_EDIT_SEARCH";
+		};
 	};
 };
