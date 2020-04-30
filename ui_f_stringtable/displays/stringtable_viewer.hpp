@@ -15,7 +15,7 @@ class stringtable_viewer {
 			x = "((getResolution select 2) * 0.5 * pixelW) - 94 * (pixelW * pixelGrid * 0.50)";
 			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 12 * (pixelH * pixelGrid * 0.50)";
 			w = "188 * (pixelW * pixelGrid * 0.50)";
-			h = "132 * (pixelH * pixelGrid * 0.50)";
+			h = "132 * (pixelH * pixelGrid * 0.50) + 2 * pixelH";
 		};
 		class stringtable_subtitle_background: background {
 			h = "6 * (pixelH * pixelGrid * 	0.50)";
@@ -121,7 +121,7 @@ class stringtable_viewer {
 			idc = 3000;
 			style = 512;
 			x = "((getResolution select 2) * 0.5 * pixelW) - 94 * (pixelW * pixelGrid * 0.50)";
-			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
+			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50) + 2 * pixelH";
 			w = "40 * (pixelW * pixelGrid *  0.50)";
 			h = "6 * (pixelH * pixelGrid * 	0.50)";
 			tooltip = $STR_STRINGTABLE_TOOLTIP_EDIT_BOX;
@@ -135,7 +135,7 @@ class stringtable_viewer {
 		class searchEditButton: ctrlButtonSearch {
 			idc = 4000;
 			x = "((getResolution select 2) * 0.5 * pixelW) - 54 * (pixelW * pixelGrid * 0.50)";
-			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
+			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50) + 2 * pixelH";
 			w = "6 * (pixelW * pixelGrid * 	0.50)";
 			h = "6 * (pixelH * pixelGrid * 	0.50)";
 			colorBackground[] = {0,0,0,0};
@@ -170,7 +170,7 @@ class stringtable_viewer {
 		class comboStringtable: CtrlCombo {
 			idc = 7000;
 			x = "((getResolution select 2) * 0.5 * pixelW) - 30 * (pixelW * pixelGrid * 0.50)";
-			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
+			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50) + 2 * pixelH";
 			w = "56 * (pixelW * pixelGrid * 0.50)";
 			h = "6 * (pixelH * pixelGrid * 	0.50)";
 			tooltip = $STR_STRINGTABLE_COMBO_ORIGIN;
@@ -178,7 +178,7 @@ class stringtable_viewer {
 		class comboLanguage: CtrlCombo {
 			idc = 8000;
 			x = "((getResolution select 2) * 0.5 * pixelW) + 26 * (pixelW * pixelGrid * 0.50)";
-			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
+			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50) + 2 * pixelH";
 			w = "56 * (pixelW * pixelGrid * 0.50)";
 			h = "6 * (pixelH * pixelGrid * 	0.50)";
 			tooltip = $STR_STRINGTABLE_COMBO_LANGUAGE;
@@ -186,14 +186,14 @@ class stringtable_viewer {
 		class helpIcon: ctrlStaticPicture {
 			text = "\stringtable\ui_f_stringtable\data\github_logo_light_ca.paa";
 			x = "((getResolution select 2) * 0.5 * pixelW) + 82 * (pixelW * pixelGrid * 0.50)";
-			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
+			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50) + 2 * pixelH";
 			w = "12 * (pixelW * pixelGrid * 0.50)";
 			h = "6 * (pixelH * pixelGrid * 0.50)";
 			tooltip = $STR_STRINGTABLE_GITHUB_TOOLTIP;
 		};
 		class helpLink: ctrlStructuredText {
 			x = "((getResolution select 2) * 0.5 * pixelW) + 80.5 * (pixelW * pixelGrid * 0.50)";
-			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50)";
+			y = "0.5 - (safezoneH min (160 * (pixelH * pixelGrid * 0.50))) * 0.5 + 138 * (pixelH * pixelGrid * 0.50) + 2 * pixelH";
 			w = "15.2 * (pixelW * pixelGrid * 0.50)";
 			h = "6 * (pixelH * pixelGrid * 0.50)";
 			text = "<a href='https://github.com/Asaayu/3Den-Stringtable-Viewer'>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</a>";
