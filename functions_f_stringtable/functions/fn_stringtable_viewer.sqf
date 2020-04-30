@@ -74,6 +74,17 @@ switch _mode do
 			["Custom Stringtables",profileNamespace getVariable ["stringtable_viewer_saved_xml_paths",[]]]
 		];
 
+		// Optional DLC stringtables
+		{
+			if (isClass(configFile >> "CfgPatches" >> (_x#0))) then {
+				(_stringtables#0#1) pushBack (_x#1);
+			};
+		} forEach [
+			// [CfgPatches class, stringtable file path]
+			["A3_Language_F_Contact","\a3\language_f_contact\stringtable.xml"],
+			["A3_LanguageMissions_F_Contact","\a3\languagemissions_f_contact\stringtable.xml"]
+		];
+
 		if (uiNamespace getVariable ["stringtable_viewer_allow_preload",true]) then
 		{
 			private _diag_ticktime = diag_ticktime;
