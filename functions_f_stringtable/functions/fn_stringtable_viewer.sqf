@@ -207,7 +207,7 @@ switch _mode do
 		missionNamespace setVariable ["stringtable_viewer_origin",ORIGIN_COMBO lbData 0];
 		missionNamespace setVariable ["stringtable_viewer_origin_index",0];
 
-		SEARCH_EDIT ctrlSetText localize "STR_STRINGTABLE_EDIT_SEARCH";
+		SEARCH_EDIT ctrlSetText "";
 
 		{ _x ctrlCommit 0 } count [LIST, SEARCH_EDIT, SEARCH_BUTTON, COPY_BUTTON, EXPORT_BUTTON, ORIGIN_COMBO, LANGUAGE_COMBO];
 	};
