@@ -32,7 +32,6 @@ switch _mode do
 			["Arma 3",[
 				"\a3\3den_language\stringtable.xml",
 				"\a3\language_f_mod\stringtable.xml",
-				"\a3\language_f_mod\stringtable.xml",
 				"\a3\language_f_tank\stringtable.xml",
 				"\a3\language_f_mp_mark\stringtable.xml",
 				"\a3\languagemissions_f_mp_mark\stringtable.xml",
