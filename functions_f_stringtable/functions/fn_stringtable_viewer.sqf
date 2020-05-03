@@ -81,6 +81,7 @@ switch _mode do
 			};
 		} forEach [
 			// [CfgPatches class, stringtable file path]
+			["gm_core_localization","\gm\gm_core\gm_core_localization\stringtable.xml"],
 			["A3_Language_F_Contact","\a3\language_f_contact\stringtable.xml"],
 			["A3_LanguageMissions_F_Contact","\a3\languagemissions_f_contact\stringtable.xml"]
 		];
