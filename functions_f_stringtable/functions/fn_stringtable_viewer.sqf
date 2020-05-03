@@ -31,47 +31,58 @@ switch _mode do
 		private _stringtables = [
 			["Arma 3",[
 				"\a3\3den_language\stringtable.xml",
-				"\a3\language_f_mod\stringtable.xml",
-				"\a3\language_f_tank\stringtable.xml",
-				"\a3\language_f_mp_mark\stringtable.xml",
-				"\a3\languagemissions_f_mp_mark\stringtable.xml",
-				"\a3\language_f_argo\stringtable.xml",
 				"\a3\language_f\stringtable.xml",
-				"\a3\language_f_orange\stringtable.xml",
-				"\a3\language_f_oldman\stringtable.xml",
-				"\a3\languagemissions_f_oldman\stringtable.xml",
-				"\a3\languagemissions_f_mark\stringtable.xml",
-				"\a3\languagemissions_f_jets\stringtable.xml",
-				"\a3\language_f_exp\stringtable.xml",
-				"\a3\languagemissions_f_heli\stringtable.xml",
-				"\a3\language_f_destroyer\stringtable.xml",
-				"\a3\languagemissions_f_kart\stringtable.xml",
-				"\a3\language_f_epc\stringtable.xml",
-				"\a3\language_f_epa\stringtable.xml",
-				"\a3\language_f_curator\stringtable.xml",
+				"\a3\language_f_argo\stringtable.xml",
 				"\a3\language_f_beta\stringtable.xml",
-				"\a3\languagemissions_f_patrol\stringtable.xml",
+				"\a3\language_f_bootcamp\stringtable.xml",
+				"\a3\language_f_curator\stringtable.xml",
+				"\a3\language_f_destroyer\stringtable.xml",
+				"\a3\language_f_enoch\stringtable.xml",
+				"\a3\language_f_epa\stringtable.xml",
 				"\a3\language_f_epb\stringtable.xml",
-				"\a3\language_f_heli\stringtable.xml",
+				"\a3\language_f_epc\stringtable.xml",
+				"\a3\language_f_exp\stringtable.xml",
+				"\a3\language_f_exp_a\stringtable.xml",
+				"\a3\language_f_exp_b\stringtable.xml",
 				"\a3\language_f_gamma\stringtable.xml",
+				"\a3\language_f_heli\stringtable.xml",
 				"\a3\language_f_jets\stringtable.xml",
 				"\a3\language_f_kart\stringtable.xml",
 				"\a3\language_f_mark\stringtable.xml",
-				"\a3\languagemissions_f_orange\stringtable.xml",
+				"\a3\language_f_mod\stringtable.xml",
+				"\a3\language_f_mp_mark\stringtable.xml",
+				"\a3\language_f_oldman\stringtable.xml",
+				"\a3\language_f_orange\stringtable.xml",
 				"\a3\language_f_patrol\stringtable.xml",
-				"\a3\language_f_exp_b\stringtable.xml",
 				"\a3\language_f_sams\stringtable.xml",
-				"\a3\languagemissions_f_tank\stringtable.xml",
-				"\a3\language_f_bootcamp\stringtable.xml",
-				"\a3\language_f_warlords\stringtable.xml",
-				"\a3\language_f_exp_a\stringtable.xml",
-				"\a3\language_f_enoch\stringtable.xml",
 				"\a3\language_f_tacops\stringtable.xml",
-				"\a3\languagemissions_f_tacops\stringtable.xml",
+				"\a3\language_f_tank\stringtable.xml",
+				"\a3\language_f_warlords\stringtable.xml",
 				"\a3\languagemissions_f_enoch\stringtable.xml",
+				"\a3\languagemissions_f_heli\stringtable.xml",
+				"\a3\languagemissions_f_jets\stringtable.xml",
+				"\a3\languagemissions_f_kart\stringtable.xml",
+				"\a3\languagemissions_f_mark\stringtable.xml",
+				"\a3\languagemissions_f_mp_mark\stringtable.xml",
+				"\a3\languagemissions_f_oldman\stringtable.xml",
+				"\a3\languagemissions_f_orange\stringtable.xml",
+				"\a3\languagemissions_f_patrol\stringtable.xml",
+				"\a3\languagemissions_f_tacops\stringtable.xml",
+				"\a3\languagemissions_f_tank\stringtable.xml",
 				"\languagecore_f\stringtable.xml"
 			]],
 			["Custom Stringtables",profileNamespace getVariable ["stringtable_viewer_saved_xml_paths",[]]]
+		];
+
+		// Optional DLC stringtables
+		{
+			if (isClass(configFile >> "CfgPatches" >> (_x#0))) then {
+				(_stringtables#0#1) pushBack (_x#1);
+			};
+		} forEach [
+			// [CfgPatches class, stringtable file path]
+			["A3_Language_F_Contact","\a3\language_f_contact\stringtable.xml"],
+			["A3_LanguageMissions_F_Contact","\a3\languagemissions_f_contact\stringtable.xml"]
 		];
 
 		if (uiNamespace getVariable ["stringtable_viewer_allow_preload",true]) then
