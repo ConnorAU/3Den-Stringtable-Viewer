@@ -297,7 +297,7 @@ switch _mode do
 	{
 		private _paths = profileNamespace getVariable ["stringtable_viewer_saved_xml_paths",[]];
 		[
-			true,_paths joinString ",",
+			[true,_paths joinString ","],
 			localize "STR_STRINGTABLE_CUSTOM_XML_TITLE",
 			{
 				if _confirmed then {
