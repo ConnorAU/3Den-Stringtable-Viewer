@@ -2,9 +2,13 @@
 
 class Cfg3DEN {
     class Notifications {
-		class 3DENStringtableViewer_preloading {
+		class 3DENStringtableViewer_preloading_start {
 			isWarning = 0;
-			text = "3den Stringtable Viewer: Preloading Strings"; // TODO: Localize
+			text = "$STR_STRINGTABLE_3DEN_NOTIFICATION_PRELOADING_START";
+		};
+		class 3DENStringtableViewer_preloading_end {
+			isWarning = 0;
+			text = "$STR_STRINGTABLE_3DEN_NOTIFICATION_PRELOADING_END";
 		};
     };
 	class EventHandlers {

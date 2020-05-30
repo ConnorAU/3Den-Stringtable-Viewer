@@ -105,9 +105,17 @@
          <English>Unable to modify custom stringtable.xml paths</English>
          <German>Ändern der benutzerdefinierten stringtable.xml Pfade nicht möglich</German>
      </Key>
-         <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_DESCRIPTION">
+     <Key ID="STR_STRINGTABLE_CUSTOM_ERROR_DESCRIPTION">
          <Original>You are missing the following dependency: &lt;a href='%1' colorLink='%2'&gt;User Input Menus&lt;/a&gt;</Original>
          <English>You are missing the following dependency: &lt;a href='%1' colorLink='%2'&gt;User Input Menus&lt;/a&gt;</English>
          <German>Folgende Abhängigkeiten fehlen: &lt;a href='%1' colorLink='%2'&gt;User Input Menus&lt;/a&gt;</German>
+     </Key>
+     <Key ID="STR_STRINGTABLE_3DEN_NOTIFICATION_PRELOADING_START">
+         <Original>3den Stringtable Viewer: Preloading Strings</Original>
+         <English>3den Stringtable Viewer: Preloading Strings</English>
+     </Key>
+     <Key ID="STR_STRINGTABLE_3DEN_NOTIFICATION_PRELOADING_END">
+         <Original>3den Stringtable Viewer: Preloading Complete</Original>
+         <English>3den Stringtable Viewer: Preloading Complete</English>
      </Key>
 </Project>

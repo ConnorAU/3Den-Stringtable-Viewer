@@ -91,7 +91,7 @@ switch _mode do
 			uiNamespace setVariable ["stringtable_viewer_allow_preload",_thisScript];
 			private _diag_ticktime = diag_ticktime;
 			if (isNull DISPLAY) then {
-				["3DENStringtableViewer_preloading",0,5] spawn BIS_fnc_3DENNotification;
+				["3DENStringtableViewer_preloading_start",0,5] spawn BIS_fnc_3DENNotification;
 			};
 
 			private _master = [];
@@ -109,6 +109,10 @@ switch _mode do
 
 			private _time = diag_ticktime - _diag_ticktime;
 			diag_log format[localize "STR_STRINGTABLE_PRELOAD_DIAG_LOG",str _time];
+
+			if (isNull DISPLAY) then {
+				["3DENStringtableViewer_preloading_end",0,5] spawn BIS_fnc_3DENNotification;
+			};
 		};
 		if (!isNull DISPLAY && {!isNil {uiNamespace getVariable "stringtable_viewer_data"}}) then {
 			BUSY_BACKGROUND_PRELOADING ctrlShow false;
