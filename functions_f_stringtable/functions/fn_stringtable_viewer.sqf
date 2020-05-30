@@ -86,9 +86,13 @@ switch _mode do
 			["A3_LanguageMissions_F_Contact","\a3\languagemissions_f_contact\stringtable.xml"]
 		];
 
-		if (uiNamespace getVariable ["stringtable_viewer_allow_preload",true]) then
+		if (isNull (uiNamespace getVariable ["stringtable_viewer_allow_preload",scriptNull]) && {isNil {uiNamespace getVariable "stringtable_viewer_data"}}) then
 		{
+			uiNamespace setVariable ["stringtable_viewer_allow_preload",_thisScript];
 			private _diag_ticktime = diag_ticktime;
+			if (isNull DISPLAY) then {
+				["3DENStringtableViewer_preloading",0,5] spawn BIS_fnc_3DENNotification;
+			};
 
 			private _master = [];
 
@@ -101,22 +105,23 @@ switch _mode do
 				_master pushBack [_x#0,_output];
 			} foreach _stringtables;
 
-			uiNamespace setVariable ["stringtable_viewer_allow_preload",false];
 			uiNamespace setVariable ["stringtable_viewer_data",_master];
 
 			private _time = diag_ticktime - _diag_ticktime;
 			diag_log format[localize "STR_STRINGTABLE_PRELOAD_DIAG_LOG",str _time];
 		};
-		BUSY_BACKGROUND_PRELOADING ctrlShow false;
-		BUSY_BACKGROUND_PRELOADING ctrlCommit 0;
+		if (!isNull DISPLAY && {!isNil {uiNamespace getVariable "stringtable_viewer_data"}}) then {
+			BUSY_BACKGROUND_PRELOADING ctrlShow false;
+			BUSY_BACKGROUND_PRELOADING ctrlCommit 0;
 
-		["initgui",_stringtables apply {_x#0}] call STRINGTABLE_fnc_stringtable_viewer;
-		["eventhandlers"] call STRINGTABLE_fnc_stringtable_viewer;
-		["loadstringtable"] spawn STRINGTABLE_fnc_stringtable_viewer;
+			["initgui",_stringtables apply {_x#0}] call STRINGTABLE_fnc_stringtable_viewer;
+			["eventhandlers"] call STRINGTABLE_fnc_stringtable_viewer;
+			["loadstringtable"] spawn STRINGTABLE_fnc_stringtable_viewer;
 
-		SEARCH_EDIT ctrlSetText "";
-		SEARCH_EDIT ctrlSetTooltip "";
-		SEARCH_EDIT ctrlCommit 0;
+			SEARCH_EDIT ctrlSetText "";
+			SEARCH_EDIT ctrlSetTooltip "";
+			SEARCH_EDIT ctrlCommit 0;
+		};
 	};
 	case "parsestringtables":
 	{
@@ -128,7 +133,9 @@ switch _mode do
 		{
 			_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
 			_parsedFiles = _parsedFiles + 1;
-			BUSY_BACKGROUND_PRELOADING ctrlSetText format["%1 (%2%3)",localize "STR_STRINGTABLE_INFO_PRELOADING",ceil((_parsedFiles/_totalFiles)*100),"%"];
+			if !(isNull BUSY_BACKGROUND_PRELOADING) then {
+				BUSY_BACKGROUND_PRELOADING ctrlSetText format["%1 (%2%3)",localize "STR_STRINGTABLE_INFO_PRELOADING",ceil((_parsedFiles/_totalFiles)*100),"%"];
+			};
 		} forEach _filepaths;
 
 		_strings
