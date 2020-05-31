@@ -113,9 +113,11 @@
      <Key ID="STR_STRINGTABLE_3DEN_NOTIFICATION_PRELOADING_START">
          <Original>3den Stringtable Viewer: Preloading Strings</Original>
          <English>3den Stringtable Viewer: Preloading Strings</English>
+         <German>3den Stringtable Viewer: Übersetzungen werden vorgeladen</German>
      </Key>
      <Key ID="STR_STRINGTABLE_3DEN_NOTIFICATION_PRELOADING_END">
          <Original>3den Stringtable Viewer: Preloading Complete</Original>
          <English>3den Stringtable Viewer: Preloading Complete</English>
+         <German>3den Stringtable Viewer: Vorladen beendet</German>
      </Key>
 </Project>
