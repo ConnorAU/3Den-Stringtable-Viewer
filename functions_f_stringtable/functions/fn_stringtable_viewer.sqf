@@ -28,49 +28,28 @@ switch _mode do
 // Preload functions
 	case "preload":
 	{
+		// Auto-detect .xml files from all loaded pbos (ebos not supported)
+		private _allAddonXMLs = allAddonsInfo apply {addonFiles[_x#0,".xml"]} apply {
+			_x select {
+				private _filePath = _x splitString "\";
+				_filePath#(count _filePath - 1) == "stringtable.xml"
+			}
+		};
+		private _allAutoDetectedXMLs = [];
+		{_allAutoDetectedXMLs append (_x apply {tolower _x})} forEach _allAddonXMLs;
+
+		private _autoDetectedXMLs_A3 = _allAutoDetectedXMLs select {0 in [_x find "a3\",_x find "languagecore_f\"]};
+		private _autoDetectedXMLs_Other = _allAutoDetectedXMLs - _autoDetectedXMLs_A3;
+
 		private _stringtables = [
-			["Arma 3",[
-				"\a3\3den_language\stringtable.xml",
-				"\a3\language_f\stringtable.xml",
-				"\a3\language_f_argo\stringtable.xml",
-				"\a3\language_f_beta\stringtable.xml",
-				"\a3\language_f_bootcamp\stringtable.xml",
-				"\a3\language_f_curator\stringtable.xml",
-				"\a3\language_f_destroyer\stringtable.xml",
+			["Arma 3",_autoDetectedXMLs_A3 + [
+				// EBO stringtable paths
 				"\a3\language_f_enoch\stringtable.xml",
-				"\a3\language_f_epa\stringtable.xml",
-				"\a3\language_f_epb\stringtable.xml",
-				"\a3\language_f_epc\stringtable.xml",
-				"\a3\language_f_exp\stringtable.xml",
-				"\a3\language_f_exp_a\stringtable.xml",
-				"\a3\language_f_exp_b\stringtable.xml",
-				"\a3\language_f_gamma\stringtable.xml",
-				"\a3\language_f_heli\stringtable.xml",
-				"\a3\language_f_jets\stringtable.xml",
-				"\a3\language_f_kart\stringtable.xml",
-				"\a3\language_f_mark\stringtable.xml",
-				"\a3\language_f_mod\stringtable.xml",
-				"\a3\language_f_mp_mark\stringtable.xml",
-				"\a3\language_f_oldman\stringtable.xml",
-				"\a3\language_f_orange\stringtable.xml",
-				"\a3\language_f_patrol\stringtable.xml",
-				"\a3\language_f_sams\stringtable.xml",
 				"\a3\language_f_tacops\stringtable.xml",
-				"\a3\language_f_tank\stringtable.xml",
-				"\a3\language_f_warlords\stringtable.xml",
 				"\a3\languagemissions_f_enoch\stringtable.xml",
-				"\a3\languagemissions_f_heli\stringtable.xml",
-				"\a3\languagemissions_f_jets\stringtable.xml",
-				"\a3\languagemissions_f_kart\stringtable.xml",
-				"\a3\languagemissions_f_mark\stringtable.xml",
-				"\a3\languagemissions_f_mp_mark\stringtable.xml",
-				"\a3\languagemissions_f_oldman\stringtable.xml",
-				"\a3\languagemissions_f_orange\stringtable.xml",
-				"\a3\languagemissions_f_patrol\stringtable.xml",
-				"\a3\languagemissions_f_tacops\stringtable.xml",
-				"\a3\languagemissions_f_tank\stringtable.xml",
-				"\languagecore_f\stringtable.xml"
+				"\a3\languagemissions_f_tacops\stringtable.xml"
 			]],
+			["Auto-Detected Stringtables",_autoDetectedXMLs_Other],
 			["Custom Stringtables",profileNamespace getVariable ["stringtable_viewer_saved_xml_paths",[]]]
 		];
 
@@ -132,13 +111,16 @@ switch _mode do
 		_params params ["_filepaths","_totalFiles","_parsedFiles"];
 
 		private _languages = ("true" configClasses (configfile >> "CfgLanguages")) apply {tolower configname _x};
+		private _processedFilePaths = [];
 		private _strings = [];
 
 		{
-			_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
-			_parsedFiles = _parsedFiles + 1;
-			if !(isNull BUSY_BACKGROUND_PRELOADING) then {
-				BUSY_BACKGROUND_PRELOADING ctrlSetText format["%1 (%2%3)",localize "STR_STRINGTABLE_INFO_PRELOADING",ceil((_parsedFiles/_totalFiles)*100),"%"];
+			if (_processedFilePaths pushBackUnique _x > -1) then {
+				_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
+				_parsedFiles = _parsedFiles + 1;
+				if !(isNull BUSY_BACKGROUND_PRELOADING) then {
+					BUSY_BACKGROUND_PRELOADING ctrlSetText format["%1 (%2%3)",localize "STR_STRINGTABLE_INFO_PRELOADING",ceil((_parsedFiles/_totalFiles)*100),"%"];
+				};
 			};
 		} forEach _filepaths;
 
@@ -327,7 +309,7 @@ switch _mode do
 
 						private _master = uiNamespace getVariable ["stringtable_viewer_data",[]];
 						private _output = ["parsestringtables",[_text,count _text,0]] call STRINGTABLE_fnc_stringtable_viewer;
-						(_master#1) set [1,_output];
+						(_master#2) set [1,_output];
 						uiNamespace setVariable ["stringtable_viewer_data",_master];
 
 						BUSY_BACKGROUND_PRELOADING ctrlShow false;
@@ -375,7 +357,7 @@ switch _mode do
 			private _text = _text_list#stringtable_viewer_language_index;
 			if (_search_term in ["",toLower localize "STR_STRINGTABLE_EDIT_SEARCH"] || {_search_term in toLower _key || {_search_term in toLower _text}}) then
 			{
-				
+
 				private _row = LIST lnbAddRow [_key, _text, ""];
 				LIST lnbSetTooltip [[_row,0], _text];
 			};
