@@ -40,6 +40,10 @@
         <English>Export Selected Key Localize Code to Clipboard (Ctrl - X)</English>
         <German>Ausgewählten Schlüssel als Übersetzungscode in die Zwischenablage kopieren (STRG - X)</German>
     </Key>
+    <Key ID="STR_STRINGTABLE_BUTTON_CUSTOM_PATHS">
+	    <Original>Add and remove your own stringtable.xml file paths for viewing</Original>
+	    <English>Add and remove your own stringtable.xml file paths for viewing</English>
+    </Key>
     <Key ID="STR_STRINGTABLE_COMBO_ORIGIN">
         <Original>Stringtable Origin</Original>
         <English>Stringtable Origin</English>
