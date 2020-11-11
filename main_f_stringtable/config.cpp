@@ -11,28 +11,28 @@ class Cfg3DEN {
 			text = "$STR_STRINGTABLE_3DEN_NOTIFICATION_PRELOADING_END";
 		};
     };
-	class EventHandlers {
-		class 3DENStringtableViewer {
-			onTerrainNew="['preload'] spawn STRINGTABLE_fnc_stringtable_viewer;";
-		};
+class EventHandlers {
+	class 3DENStringtableViewer {
+		onTerrainNew="if ('Preferences' get3DENMissionAttribute '3DENStringtableViewer_EnablePreloading') then {['preload'] spawn STRINGTABLE_fnc_stringtable_viewer;}";
 	};
-	class Mission {
-		class Preferences {
-			class AttributeCategories {	
-				class Misc {
-					class Attributes {
-						class 3DENStringtableViewer_EnablePreloading
-						{
-						  displayName = "Enable Stringtable Preloading";
-						  tooltip = "Enables Stringtable preloading. If you notice performance issues disabled this option to only load stringtables when required";
-						  property = "3DENStringtableViewer_EnablePreloading";
-						  control = "Checkbox";
-						  expression = "";
-						  defaultValue = "false";
-						};
+};
+class Mission {
+	class Preferences {
+		class AttributeCategories {	
+			class Misc {
+				class Attributes {
+					class 3DENStringtableViewer_EnablePreloading
+					{
+					  displayName = $STR_STRINGTABLE_3DEN_PREFERENCES_ENABLEPRELOADING_DISPLAYNAME;
+       				          tooltip = $STR_STRINGTABLE_3DEN_PREFERENCES_ENABLEPRELOADING_TOOLTIP;
+					  property = "3DENStringtableViewer_EnablePreloading";
+					  control = "Checkbox";
+					  expression = "";
+					  defaultValue = "false";
 					};
 				};
 			};
 		};
-	};				
+	};
+};				
 };
