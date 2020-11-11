@@ -16,4 +16,23 @@ class Cfg3DEN {
 			onTerrainNew="['preload'] spawn STRINGTABLE_fnc_stringtable_viewer;";
 		};
 	};
+	class Mission {
+		class Preferences {
+			class AttributeCategories {	
+				class Misc {
+					class Attributes {
+						class 3DENStringtableViewer_EnablePreloading
+						{
+						  displayName = "Enable Stringtable Preloading";
+						  tooltip = "Enables Stringtable preloading. If you notice performance issues disabled this option to only load stringtables when required";
+						  property = "3DENStringtableViewer_EnablePreloading";
+						  control = "Checkbox";
+						  expression = "";
+						  defaultValue = "false";
+						};
+					};
+				};
+			};
+		};
+	};				
 };
