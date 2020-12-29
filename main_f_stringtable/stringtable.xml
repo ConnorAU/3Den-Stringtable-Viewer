@@ -125,4 +125,14 @@
          <English>3den Stringtable Viewer: Preloading Complete</English>
          <German>3den Stringtable Viewer: Vorladen beendet</German>
      </Key>
+    <Key ID="STR_STRINGTABLE_3DEN_PREFERENCES_ENABLEPRELOADING_DISPLAYNAME">
+         <Original>Enable Stringtable Preloading</Original>
+         <English>Enable Stringtable Preloading</English>
+         <German>Vorladen von Stringtable-Dateien anschalten</German><!---Might not be the ideal translation--->
+     </Key>
+    <Key ID="STR_STRINGTABLE_3DEN_PREFERENCES_ENABLEPRELOADING_TOOLTIP">
+         <Original>If enabled, stringtable files will be preloaded everytime Eden Editor is opened. Disable this to improve performance.</Original>
+         <English>If enabled, stringtable files will be preloaded everytime Eden Editor is opened. Disable this to improve performance.</English>
+         <German>Wenn angeschaltet werden alle Stringtable-Dateien vorgeladen. Schalte dies aus um die Leistung zu verbessern.</German>
+     </Key>
 </Project>
