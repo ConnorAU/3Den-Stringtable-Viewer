@@ -4,8 +4,8 @@
 #### Youtube Video: https://www.youtube.com/watch?v=3rLkwqSuiB0&feature=youtu.be
 #### Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2073243184
 
-With over 27,000 strings avaliable in over 13 languages. (That's over 350,000 different varients!) 3Den Stringtable Viewer allows creators of missions or mods to use alreay localized text in their projects.
-Specific lines of text will not be avaliable but simple text such as,
+With over 27,000 strings available in over 13 languages. (That's over 350,000 different varients!) 3Den Stringtable Viewer allows creators of missions or mods to use already localized text in their projects.
+Specific lines of text will not be available but simple text such as,
 - Yes/No
 - Unit names (e.g "Rifleman", etc.)
 - Directions (e.g "North", "East", etc.)
