@@ -73,7 +73,7 @@ switch _mode do
 				["3DENStringtableViewer_preloading_start",0,5] spawn BIS_fnc_3DENNotification;
 			};
 
-			private _master = [];
+			private _master = createHashMap;
 
 			private _totalFiles = 0;
 			{_totalFiles = _totalFiles + (count(_x#1))} count _stringtables;
@@ -81,7 +81,7 @@ switch _mode do
 			{
 				private _output = ["parsestringtables",[_x#1,_totalFiles,_parsedFiles]] call STRINGTABLE_fnc_stringtable_viewer;
 				_parsedFiles = _parsedFiles + count(_x#1);
-				_master pushBack [_x#0,_output];
+				_master set [_x#0,_output];
 			} foreach _stringtables;
 
 			uiNamespace setVariable ["stringtable_viewer_data",_master];
@@ -112,11 +112,11 @@ switch _mode do
 
 		private _languages = ("true" configClasses (configfile >> "CfgLanguages")) apply {tolower configname _x};
 		private _processedFilePaths = [];
-		private _strings = [];
+		private _strings = createHashMap;
 
 		{
 			if (_processedFilePaths pushBackUnique _x > -1) then {
-				_strings append (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
+				_strings insert (["extractstringsfromtable",[_x,_languages]] call STRINGTABLE_fnc_stringtable_viewer);
 				_parsedFiles = _parsedFiles + 1;
 				if !(isNull BUSY_BACKGROUND_PRELOADING) then {
 					BUSY_BACKGROUND_PRELOADING ctrlSetText format["%1 (%2%3)",localize "STR_STRINGTABLE_INFO_PRELOADING",ceil((_parsedFiles/_totalFiles)*100),"%"];
@@ -139,7 +139,6 @@ switch _mode do
 		private _strings = [];
 		private _activeKey = "";
 		private _activeStrings = [];
-		_activeStrings resize _languagesCount;
 		private _x = "";
 
 		for "_i" from 0 to (count _stringtable - 1) do {
@@ -152,20 +151,18 @@ switch _mode do
 				};
 			} else {
 				if (_x == "/key") then {
-					_strings pushback [_activeKey,_activeStrings apply {if (isNil {_x}) then {""} else {_x}}];
+					_strings pushBack [_activeKey,createHashMapFromArray _activeStrings];
 					_activeKey = "";
 					_activeStrings = [];
-					_activeStrings resize _languagesCount;
 				} else {
 					if (tolower _x in _languages) then {
 						private _x1 = _stringtable # (_i + 1);
 						private _x2 = _stringtable # (_i + 2);
 						if (_x2 == format["/%1",_x]) then {
-							_activeStrings set [_languages find tolower _x,str parseText _x1];
+							_activeStrings pushBack [tolower _x,str parseText _x1];
 							_i = _i + 2;
 						} else {
 							if (_x1 == format["/%1",_x]) then {
-								_activeStrings set [_languages find tolower _x,""];
 								_i = _i + 1;
 							};
 						};
@@ -307,9 +304,9 @@ switch _mode do
 						profileNamespace setVariable ["stringtable_viewer_saved_xml_paths",_text];
 						saveProfileNamespace;
 
-						private _master = uiNamespace getVariable ["stringtable_viewer_data",[]];
+						private _master = uiNamespace getVariable ["stringtable_viewer_data",createHashMap];
 						private _output = ["parsestringtables",[_text,count _text,0]] call STRINGTABLE_fnc_stringtable_viewer;
-						(_master#2) set [1,_output];
+						_master set ["Custom Stringtables",_output];
 						uiNamespace setVariable ["stringtable_viewer_data",_master];
 
 						BUSY_BACKGROUND_PRELOADING ctrlShow false;
@@ -350,18 +347,17 @@ switch _mode do
 
 		private _diag_ticktime = diag_ticktime;
 
-		private _keys = uiNamespace getVariable ["stringtable_viewer_data",[]];
-		if (count _keys < 0) exitWith {};
+		private _master = uiNamespace getVariable ["stringtable_viewer_data",createHashMap];
+		if (count _master == 0) exitWith {};
+		private _language = toLower stringtable_viewer_language;
 		{
-			_x params ["_key","_text_list"];
-			private _text = _text_list#stringtable_viewer_language_index;
-			if (_search_term in ["",toLower localize "STR_STRINGTABLE_EDIT_SEARCH"] || {_search_term in toLower _key || {_search_term in toLower _text}}) then
+			private _text = _y getOrDefault [_language,""];
+			if (_search_term in ["",toLower localize "STR_STRINGTABLE_EDIT_SEARCH"] || {_search_term in toLower _x || {_search_term in toLower _text}}) then
 			{
-
-				private _row = LIST lnbAddRow [_key, _text, ""];
+				private _row = LIST lnbAddRow [_x, _text, ""];
 				LIST lnbSetTooltip [[_row,0], _text];
 			};
-		} foreach ((_keys#stringtable_viewer_origin_index)#1);
+		} foreach (_master getOrDefault [stringtable_viewer_origin,createHashMap]);
 
 		private _time = diag_ticktime - _diag_ticktime;
 		diag_log format[localize "STR_STRINGTABLE_INFO_DIAG_LOG",stringtable_viewer_origin,stringtable_viewer_language,str _time,(lnbSize LIST)#0];
